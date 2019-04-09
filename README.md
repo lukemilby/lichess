@@ -1,4 +1,4 @@
-## Goland Lichess Package
+## Golang Lichess Package
 
 A Go implementation of [Lichess](https://lichess.org)'s API
 
