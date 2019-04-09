@@ -1,6 +1,6 @@
 ## Goland Lichess Package
 
-A Go implementation of Lichess's API
+A Go implementation of [Lichess](https://lichess.org)'s API
 
 ### Usage
 Create API Token from [here](https://lichess.org/account/oauth/token/create) 
