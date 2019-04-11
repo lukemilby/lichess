@@ -39,7 +39,7 @@ func (c *Client) newRequest(method, path string, body interface{}) (*http.Reques
 	//if c.APIKey == "" {
 	//	log.Fatal("Missing API key")
 	//}
-	req.Header.Set("Accept", "application/json")
+
 	req.Header.Set("User-Agent", c.UserAgent)
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 	return req, nil
