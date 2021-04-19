@@ -286,11 +286,11 @@ func (c *Client) GetPlayer(username string) (*User, error){
 func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error){
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/rating-history", username), nil)
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
-	history := new(User)
-	_, err = c.do(req, &user)
+	history := new(PlayerHistory)
+	_, err = c.do(req, &history)
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
 	}
-	return user, err
+	return history, err
 }
