@@ -3,22 +3,29 @@ package lichess
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 )
 
 type Client struct {
-	BaseURL *url.URL
-	UserAgent string
-	APIKey string
+	BaseURL    *url.URL
+	UserAgent  string
+	APIKey     string
 	HttpClient *http.Client
 }
 
-func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error){
-	rel := &url.URL{Path:path}
+func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error) {
+	if c.BaseURL == nil {
+		return nil, errors.New("BaseURL is undefined")
+	}
+	if c.APIKey == "" {
+		return nil, errors.New("APIKey is undefined")
+	}
+
+	rel := &url.URL{Path: path}
 	u := c.BaseURL.ResolveReference(rel)
 
 	var buf io.ReadWriter
@@ -31,15 +38,10 @@ func (c *Client) newRequest(method, path string, body interface{}) (*http.Reques
 	}
 	req, err := http.NewRequest(method, u.String(), buf)
 	if err != nil {
-		log.Fatalf("ERROR: %s", err)
+		return nil, err
 	}
-	if body != nil {
-		req.Header.Set("Content-Type", "application/json")
-	}
-	//if c.APIKey == "" {
-	//	log.Fatal("Missing API key")
-	//}
-
+	// Default request is json
+	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("User-Agent", c.UserAgent)
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 	return req, nil
