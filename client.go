@@ -10,11 +10,16 @@ import (
 	"net/url"
 )
 
+// HTTPClient interface
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+
 type Client struct {
 	BaseURL    *url.URL
 	UserAgent  string
 	APIKey     string
-	HttpClient *http.Client
+	HttpClient HTTPClient
 }
 
 func (c *Client) newRequest(method, path string, body interface{}) (*http.Request, error) {
@@ -51,9 +56,8 @@ func (c *Client) do(req *http.Request,
 	v interface{}) (response *http.Response, err error) {
 	resp, err := c.HttpClient.Do(req)
 	if err != nil {
-		return
+		return nil, err
 	}
 	defer resp.Body.Close()
-	err = json.NewDecoder(resp.Body).Decode(v)
-	return response, err
+	return resp, err
 }
