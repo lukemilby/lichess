@@ -3,17 +3,18 @@ package lichess
 import (
 	"bytes"
 	"encoding/json"
-	"log"
-	"os"
 )
 
 type Profile struct {
-	Bio       string `json:"bio"`
-	Country   string `json:"country"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	Links     string `json:"links"`
-	Location  string `json:"location"`
+	Bio        string `json:"bio"`
+	Country    string `json:"country"`
+	FirstName  string `json:"firstName"`
+	LastName   string `json:"lastName"`
+	Links      string `json:"links"`
+	Location   string `json:"location"`
+	FideRating int    `json:"fideRating"`
+	UscfRating int    `json:"uscfRating"`
+	EcfRating  int    `json:"ecfRating"`
 }
 
 type Count struct {
@@ -130,8 +131,7 @@ func (c *Client) GetProfile() (*User, error) {
 	user := new(User)
 	_, err = c.do(req, &user)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return user, err
 }
@@ -143,8 +143,7 @@ func (c *Client) GetEmail() (*Email, error) {
 	email := new(Email)
 	_, err = c.do(req, &email)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return email, err
 }
@@ -156,8 +155,7 @@ func (c *Client) GetPreferences() (*Preferences, error) {
 	pref := new(Preferences)
 	_, err = c.do(req, &pref)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return pref, err
 }
@@ -169,8 +167,7 @@ func (c *Client) GetKidModeStatus() (*KidModeStatus, error) {
 	kid := new(KidModeStatus)
 	_, err = c.do(req, &kid)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return kid, err
 }
@@ -185,8 +182,7 @@ func (c *Client) SetKidModeStatus(KidStaus bool) (*Ok, error) {
 	okStatus := new(Ok)
 	_, err = c.do(req, &okStatus)
 	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
+		return nil, err
 	}
 	return okStatus, err
 }
