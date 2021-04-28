@@ -7,10 +7,9 @@ import (
 )
 
 type UserRealTimeStatus struct {
-
 }
 type TopGamePrefs struct {
-	Rating int `json:"rating"`
+	Rating   int `json:"rating"`
 	Progress int `json:"progress"`
 }
 
@@ -55,7 +54,6 @@ type RacingKingsPrefs struct {
 	RacingKings TopGamePrefs `json:"racingKings"`
 }
 
-
 type BulletPlayer struct {
 	ID       string      `json:"id"`
 	Username string      `json:"username"`
@@ -84,75 +82,75 @@ type RapidPlayer struct {
 }
 
 type ClassicalPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string         `json:"id"`
+	Username string         `json:"username"`
 	Prefs    ClassicalPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string         `json:"title"`
+	Patron   bool           `json:"patron"`
+	Online   bool           `json:"online"`
 }
 
 type UltraBulletPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string           `json:"id"`
+	Username string           `json:"username"`
 	Prefs    UltraBulletPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string           `json:"title"`
+	Patron   bool             `json:"patron"`
+	Online   bool             `json:"online"`
 }
 
 type CrazyHousePlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string          `json:"id"`
+	Username string          `json:"username"`
 	Prefs    CrazyhousePrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string          `json:"title"`
+	Patron   bool            `json:"patron"`
+	Online   bool            `json:"online"`
 }
 
 type Chess960Player struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string        `json:"id"`
+	Username string        `json:"username"`
 	Prefs    Chess960Prefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string        `json:"title"`
+	Patron   bool          `json:"patron"`
+	Online   bool          `json:"online"`
 }
 
 type KingOfTheHillPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string             `json:"id"`
+	Username string             `json:"username"`
 	Prefs    KingOfTheHillPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string             `json:"title"`
+	Patron   bool               `json:"patron"`
+	Online   bool               `json:"online"`
 }
 
 type ThreeCheckPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string          `json:"id"`
+	Username string          `json:"username"`
 	Prefs    ThreeCheckPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string          `json:"title"`
+	Patron   bool            `json:"patron"`
+	Online   bool            `json:"online"`
 }
 
 type AntichessPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string         `json:"id"`
+	Username string         `json:"username"`
 	Prefs    AntichessPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string         `json:"title"`
+	Patron   bool           `json:"patron"`
+	Online   bool           `json:"online"`
 }
 
 type AtomicPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string      `json:"id"`
+	Username string      `json:"username"`
 	Prefs    AtomicPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string      `json:"title"`
+	Patron   bool        `json:"patron"`
+	Online   bool        `json:"online"`
 }
 type HordePlayer struct {
 	ID       string     `json:"id"`
@@ -163,32 +161,32 @@ type HordePlayer struct {
 	Online   bool       `json:"online"`
 }
 type RacingKingsPlayer struct {
-	ID       string     `json:"id"`
-	Username string     `json:"username"`
+	ID       string           `json:"id"`
+	Username string           `json:"username"`
 	Prefs    RacingKingsPrefs `json:"prefs"`
-	Title    string     `json:"title"`
-	Patron   bool       `json:"patron"`
-	Online   bool       `json:"online"`
+	Title    string           `json:"title"`
+	Patron   bool             `json:"patron"`
+	Online   bool             `json:"online"`
 }
 
 type TopPlayers struct {
-	Bullet []BulletPlayer `json:"bullet"`
-	Blitz []BlitzPlayer `json:"blitz"`
-	Rapid []RapidPlayer `json:"rapid"`
-	Classical []ClassicalPlayer `json:"classical"`
-	UltraBullet []UltraBulletPlayer `json:"ultraBullet"`
-	CrazyHouse []CrazyHousePlayer `json:"crazyhouse"`
-	Chess960 []Chess960Player `json:"chess960"`
+	Bullet        []BulletPlayer        `json:"bullet"`
+	Blitz         []BlitzPlayer         `json:"blitz"`
+	Rapid         []RapidPlayer         `json:"rapid"`
+	Classical     []ClassicalPlayer     `json:"classical"`
+	UltraBullet   []UltraBulletPlayer   `json:"ultraBullet"`
+	CrazyHouse    []CrazyHousePlayer    `json:"crazyhouse"`
+	Chess960      []Chess960Player      `json:"chess960"`
 	KingOfTheHill []KingOfTheHillPlayer `json:"kingOfTheHill"`
-	ThreeCheck []ThreeCheckPlayer `json:"threeCheck"`
-	Antichess []AntichessPlayer `json:"antichess"`
-	Atomic []AtomicPlayer `json:"atomic"`
-	Horde []HordePlayer `json:"horde"`
-	RacingKings []RacingKingsPlayer `json:"racingKings"`
+	ThreeCheck    []ThreeCheckPlayer    `json:"threeCheck"`
+	Antichess     []AntichessPlayer     `json:"antichess"`
+	Atomic        []AtomicPlayer        `json:"atomic"`
+	Horde         []HordePlayer         `json:"horde"`
+	RacingKings   []RacingKingsPlayer   `json:"racingKings"`
 }
 
 type LeaderStats struct {
-	Rating int `json:"rating"`
+	Rating   int `json:"rating"`
 	Progress int `json:"progress"`
 }
 
@@ -219,14 +217,12 @@ type LeaderBoard struct {
 	Users []LeaderUser `json:"users"`
 }
 
-
 //Player history struct
 type HistoryDate struct {
-
 }
 
 type PrefType struct {
-	Name string `json:"name"`
+	Name   string `json:"name"`
 	Points []int
 }
 
@@ -234,18 +230,17 @@ type PlayerHistory struct {
 	History []PrefType
 }
 
-
 //TODO
 // Gets user realtime status
 //func (c *Client) GetUserRTStatus() (, error){
 //
 //}
 
-
 //Gets top 10 players for each game type
-func (c *Client) GetTopPlayers() (*TopPlayers, error){
+func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 	req, err := c.newRequest("GET", "/player", nil)
-	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+
+	fmt.Println(req)
 	players := new(TopPlayers)
 	_, err = c.do(req, &players)
 	if err != nil {
@@ -270,7 +265,7 @@ func (c *Client) GetLeaderboard(nb int, prefType string) (*LeaderBoard, error) {
 }
 
 // Gets Player information
-func (c *Client) GetPlayer(username string) (*User, error){
+func (c *Client) GetPlayer(username string) (*User, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", username), nil)
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	user := new(User)
@@ -283,7 +278,7 @@ func (c *Client) GetPlayer(username string) (*User, error){
 }
 
 // Gets player history
-func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error){
+func (c *Client) GetPlayerHistory(username string) (*PlayerHistory, error) {
 	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s/rating-history", username), nil)
 	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
 	history := new(PlayerHistory)
