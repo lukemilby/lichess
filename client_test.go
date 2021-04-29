@@ -2,6 +2,7 @@ package lichess
 
 import (
 	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -53,6 +54,40 @@ func TestDo(t *testing.T) {
 	assert.Nil(t, err)
 	assert.EqualValues(t, 200, resp.StatusCode)
 	assert.EqualValues(t, ioutil.NopCloser(bytes.NewReader([]byte(json))), resp.Body)
+}
+
+func TestDoWithBadRequstError(t *testing.T) {
+	setUp()
+
+	expected_e := url.InvalidHostError("name")
+	mocks.GetDoFunc = func(*http.Request) (*http.Response, error) {
+		return &http.Response{
+			StatusCode: 404,
+		}, expected_e
+	}
+	req, _ := client.newRequest("GET", "/some", nil)
+	user := new(User)
+	resp, err := client.do(req, &user)
+	assert.Nil(t, resp)
+	assert.NotNil(t, err)
+	assert.EqualValues(t, expected_e, err)
+}
+
+func TestDoWithJsonInvalidResponse(t *testing.T) {
+	setUp()
+
+	mocks.GetDoFunc = func(*http.Request) (*http.Response, error) {
+		return &http.Response{
+			StatusCode: 404,
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte("Invalid json response"))),
+		}, nil
+	}
+	req, _ := client.newRequest("GET", "/some", nil)
+	user := new(User)
+	resp, err := client.do(req, &user)
+	assert.NotNil(t, resp)
+	assert.NotNil(t, err)
+	assert.IsType(t, &json.SyntaxError{}, err)
 }
 
 // setUp function, add a number to numbers slice

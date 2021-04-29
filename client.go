@@ -53,12 +53,13 @@ func (c *Client) newRequest(method, path string, body interface{}) (*http.Reques
 }
 
 func (c *Client) do(req *http.Request,
-	v interface{}) (response *http.Response, err error) {
+	v interface{}) (*http.Response, error) {
 	resp, err := c.HttpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
 	err = json.NewDecoder(resp.Body).Decode(v)
+
 	return resp, err
 }
