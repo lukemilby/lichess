@@ -230,17 +230,47 @@ type PlayerHistory struct {
 	History []PrefType
 }
 
-//TODO
-// Gets user realtime status
-//func (c *Client) GetUserRTStatus() (, error){
-//
-//}
+func (c *Client) GetUserPublicData(user_name string) (*User, error) {
+	req, err := c.newRequest("GET", fmt.Sprintf("/api/user/%s", user_name), nil)
+	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+	user := new(User)
+	_, err = c.do(req, &user)
+	if err != nil {
+		return nil, err
+	}
+	return user, err
+}
+
+type UserStatus struct {
+	Id        string `json:"id"`
+	Name      string `json:"name"`
+	Title     string `json:"title"`
+	Online    bool   `json:"online"`
+	Playing   bool   `json:"playing"`
+	Streaming bool   `json:"streaming"`
+	Patron    bool   `json:"patron"`
+}
+
+func (c *Client) GetRLUsersStatus(ids string) (*[]UserStatus, error) {
+	req, err := c.newRequest("GET", "/api/users/status", nil)
+
+	q := req.URL.Query()
+	q.Add("ids", ids)
+	req.URL.RawQuery = q.Encode()
+
+	req.Header.Set("Accept", "application/vnd.lichess.v3+json")
+	users_status := new([]UserStatus)
+	_, err = c.do(req, &users_status)
+	if err != nil {
+		return nil, err
+	}
+	return users_status, err
+}
 
 //Gets top 10 players for each game type
 func (c *Client) GetTopPlayers() (*TopPlayers, error) {
 	req, err := c.newRequest("GET", "/player", nil)
 
-	fmt.Println(req)
 	players := new(TopPlayers)
 	_, err = c.do(req, &players)
 	if err != nil {
